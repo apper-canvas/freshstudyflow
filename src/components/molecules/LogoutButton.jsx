@@ -5,14 +5,20 @@ import Button from '@/components/atoms/Button';
 import ApperIcon from '@/components/ApperIcon';
 
 const LogoutButton = () => {
-  const { logout } = useContext(AuthContext);
+const authContext = useContext(AuthContext);
+  const { logout } = authContext || {};
   const { user, isAuthenticated } = useSelector((state) => state.user);
 
   if (!isAuthenticated || !user) {
     return null;
   }
 
-  const handleLogout = async () => {
+const handleLogout = async () => {
+    if (!authContext || !logout) {
+      console.warn('AuthContext or logout method not available. Ensure AuthContext.Provider is properly configured.');
+      return;
+    }
+    
     try {
       await logout();
     } catch (error) {
