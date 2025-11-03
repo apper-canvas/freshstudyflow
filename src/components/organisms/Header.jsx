@@ -1,7 +1,8 @@
 import { format } from "date-fns";
+import React from "react";
 import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
-
+import LogoutButton from "@/components/atoms/LogoutButton";
 const Header = ({ title, onMenuClick, children }) => {
   const currentDate = format(new Date(), "EEEE, MMMM d, yyyy");
 
@@ -28,7 +29,8 @@ const Header = ({ title, onMenuClick, children }) => {
           </div>
         </div>
 
-        <div className="flex items-center space-x-4">
+<div className="flex items-center space-x-4">
+          <LogoutButton />
           {children}
           
           {/* Notifications */}
